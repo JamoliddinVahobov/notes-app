@@ -26,8 +26,60 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-
     super.dispose();
+  }
+
+  Future<void> _register() async {
+    final email = _email.text;
+    final password = _password.text;
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      devtools.log(userCredential.toString());
+      // Navigate to the next page or show a success message
+    } on FirebaseAuthException catch (e) {
+      // Handle specific error codes
+      String errorMessage;
+      switch (e.code) {
+        case 'email-already-in-use':
+          errorMessage = 'This email is already in use.';
+          break;
+        case 'invalid-email':
+          errorMessage = 'This email address is invalid.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Email/password accounts are not enabled.';
+          break;
+        case 'weak-password':
+          errorMessage = 'The password provided is too weak.';
+          break;
+        default:
+          errorMessage = 'An unknown error occurred.';
+      }
+      _showErrorDialog(errorMessage);
+    } catch (e) {
+      _showErrorDialog('An error occurred. Please try again.');
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Registration Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -60,16 +112,7 @@ class _RegisterViewState extends State<RegisterView> {
             ),
           ),
           TextButton(
-            onPressed: () async {
-              final email = _email.text;
-              final password = _password.text;
-
-              final userCredential = await FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(
-                      email: email, password: password);
-
-              devtools.log(userCredential.toString());
-            },
+            onPressed: _register,
             child: const Text(
               'Register',
               style: TextStyle(color: Colors.blue, fontSize: 20),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_notes/constants/routes.dart';
+import 'package:my_notes/utilities/show_error_dialog.dart';
 // import 'dart:developer' as devtools show log;
 
 class LoginView extends StatefulWidget {
@@ -67,43 +68,35 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                if (!mounted) return;
+
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   notesRoute,
                   (route) => false,
                 );
               } on FirebaseAuthException catch (e) {
-                // Handle different types of FirebaseAuthException
-                String message;
-                switch (e.code) {
-                  case 'user-not-found':
-                    message = 'No user found for that email.';
-                    break;
-                  case 'wrong-password':
-                    message = 'Wrong password provided.';
-                    break;
-                  default:
-                    message = 'An error occurred. Please try again.';
-                    break;
+                if (e.code == 'user-not-found') {
+                  await showErrorDialog(
+                    context,
+                    'User not found',
+                  );
+                } else if (e.code == 'wrong-password') {
+                  await showErrorDialog(
+                    context,
+                    'Wrong credentials',
+                  );
+                } else {
+                  await showErrorDialog(
+                    context,
+                    'Error: ${e.code}',
+                  );
                 }
-                if (!mounted) return;
-                // Show an alert dialog or a snackbar with the error message
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Login Failed'),
-                    content: Text(message),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
+              } catch (e) {
+                await showErrorDialog(
+                  context,
+                  e.toString(),
                 );
               }
+              ;
             },
             child: const Text(
               'Login',
@@ -127,7 +120,22 @@ class _LoginViewState extends State<LoginView> {
 
 
 
-
+  // String message;
+                // switch (e.code) {
+                //   case 'user-not-found':
+                //     await showErrorDialog(context, 'User not found');
+                //   case 'email-already-in-use':
+                //     message = 'Email is already in use';
+                //     break;
+                //   case 'wrong-password':
+                //     message = 'Wrong password provided.';
+                //     break;
+                //   default:
+                //     message = 'An error occurred. Please try again.';
+                //     break;
+                // }
+                // if (!mounted) return;
+                // Show an alert dialog or a snackbar with the error message
 
 
 
