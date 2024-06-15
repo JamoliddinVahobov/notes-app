@@ -20,6 +20,7 @@ void main() {
       routes: {
         '/login/': (context) => const LoginView(),
         '/register/': (context) => const RegisterView(),
+        '/notes/': (context) => const NotesView(),
       },
     ),
   );
@@ -76,6 +77,7 @@ class _NotesViewState extends State<NotesView> {
                   devtools.log(shouldLogout.toString());
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
+
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/login',
                       (_) => false,
@@ -100,7 +102,96 @@ class _NotesViewState extends State<NotesView> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: const Text('Hello World'),
+      body: GridView(
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        children: const [
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.red,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.amber,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.green,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.blue,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.teal,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.purple,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Color.fromARGB(255, 212, 7, 171),
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Color.fromARGB(255, 35, 178, 3),
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.red,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.amber,
+            ),
+          ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Card(
+              color: Colors.green,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -110,7 +201,7 @@ Future<bool> showLogOutDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Sign out'),
+        title: const Text('Log out'),
         content: const Text('Are you sure you want to log out'),
         actions: [
           TextButton(
@@ -130,3 +221,8 @@ Future<bool> showLogOutDialog(BuildContext context) {
     },
   ).then((value) => value ?? false);
 }
+
+
+
+
+// jamoliddinvahobov@gmail.com

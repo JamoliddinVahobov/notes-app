@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'dart:developer' as devtools show log;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -60,10 +61,48 @@ class _LoginViewState extends State<LoginView> {
             onPressed: () async {
               final email = _email.text;
               final password = _password.text;
-              final userCredential = await FirebaseAuth.instance
-                  .signInWithEmailAndPassword(email: email, password: password);
-              // ignore: avoid_print
-              print(userCredential);
+              try {
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+                if (!mounted) return;
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/notes/',
+                  (route) => false,
+                );
+              } on FirebaseAuthException catch (e) {
+                // Handle different types of FirebaseAuthException
+                String message;
+                switch (e.code) {
+                  case 'user-not-found':
+                    message = 'No user found for that email.';
+                    break;
+                  case 'wrong-password':
+                    message = 'Wrong password provided.';
+                    break;
+                  default:
+                    message = 'An error occurred. Please try again.';
+                    break;
+                }
+                if (!mounted) return;
+                // Show an alert dialog or a snackbar with the error message
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Login Failed'),
+                    content: Text(message),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ),
+                );
+              }
             },
             child: const Text(
               'Login',
@@ -82,3 +121,18 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// jamoliddinvahobov@gmail.com
