@@ -70,11 +70,13 @@ class _LoginViewState extends State<LoginView> {
                 );
                 final user = AuthService.firebase().currentUser;
                 if (user?.isEmailVerified ?? false) {
+                  // ignore: use_build_context_synchronously
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     notesRoute,
                     (route) => false,
                   );
                 } else {
+                  // ignore: use_build_context_synchronously
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     verifyEmailRoute,
                     (route) => false,
@@ -82,16 +84,19 @@ class _LoginViewState extends State<LoginView> {
                 }
               } on UserNotFoundAuthException {
                 await showErrorDialog(
+                  // ignore: use_build_context_synchronously
                   context,
                   'User not found',
                 );
               } on WrongPasswordAuthException {
                 await showErrorDialog(
+                  // ignore: use_build_context_synchronously
                   context,
                   'Wrong credentials',
                 );
               } on GenericAuthException {
                 await showErrorDialog(
+                  // ignore: use_build_context_synchronously
                   context,
                   'Authentication error',
                 );

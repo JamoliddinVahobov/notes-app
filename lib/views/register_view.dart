@@ -38,27 +38,33 @@ class _RegisterViewState extends State<RegisterView> {
         password: password,
       );
       AuthService.firebase().sendEmailVerification();
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamed(verifyEmailRoute);
     } on WeakPasswordAuthException {
       await showErrorDialog(
+        // ignore: use_build_context_synchronously
         context,
         'Weak password',
       );
     } on EmailAlreadyInUseAuthException {
       await showErrorDialog(
+        // ignore: use_build_context_synchronously
         context,
         'Email is already in use',
       );
     } on InvalidEmailAuthException {
       await showErrorDialog(
+        // ignore: use_build_context_synchronously
         context,
         'This is an invalid email adress',
       );
     } on GenericAuthException {
+      // ignore: use_build_context_synchronously
       await showErrorDialog(context, 'Failed to register');
     }
   }
 
+  // ignore: unused_element
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
