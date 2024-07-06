@@ -36,7 +36,9 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         title: const Text(
           'Login',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.blue,
       ),
@@ -104,7 +106,10 @@ class _LoginViewState extends State<LoginView> {
             },
             child: const Text(
               'Login',
-              style: TextStyle(color: Colors.blue, fontSize: 20),
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 20,
+              ),
             ),
           ),
           TextButton(
