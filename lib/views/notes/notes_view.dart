@@ -31,6 +31,16 @@ class _NotesViewState extends State<NotesView> {
     return Scaffold(
         appBar: AppBar(
           actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(newNoteRoute);
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
             PopupMenuButton(
               icon: const Icon(
                 Icons.more_vert,
@@ -65,8 +75,7 @@ class _NotesViewState extends State<NotesView> {
             'Your notes',
             style: TextStyle(color: Colors.white),
           ),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.orange,
         ),
         body: FutureBuilder(
           future: _notesService.getOrCreateUser(email: userEmail),
