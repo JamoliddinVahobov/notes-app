@@ -105,7 +105,6 @@ class _NewNoteViewState extends State<NewNoteView> {
             default:
               return const Center(
                 child: CircularProgressIndicator(
-                  strokeWidth: 20,
                   color: Colors.green,
                 ),
               );
