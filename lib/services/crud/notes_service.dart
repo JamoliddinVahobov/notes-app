@@ -93,7 +93,6 @@ class NotesService {
       return note;
     }
   }
-
   Future<int> deleteAllNotes() async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
