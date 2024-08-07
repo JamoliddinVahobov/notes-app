@@ -22,7 +22,7 @@ class LoadingScreen {
   }
 
   void hide() {
-    controller?.close;
+    controller?.close();
     controller = null;
   }
 
