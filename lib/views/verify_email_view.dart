@@ -19,7 +19,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         backgroundColor: Colors.blue,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Text(

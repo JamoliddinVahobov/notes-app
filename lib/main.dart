@@ -70,11 +70,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-// jamoliddinvahobov76@gmail.com
