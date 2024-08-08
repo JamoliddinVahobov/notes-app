@@ -85,6 +85,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.blue,
+          centerTitle: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),

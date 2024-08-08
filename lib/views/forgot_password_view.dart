@@ -51,6 +51,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             'Reset your email',
             style: TextStyle(color: Colors.white),
           ),
+          centerTitle: true,
           backgroundColor: Colors.blue,
         ),
         body: Padding(

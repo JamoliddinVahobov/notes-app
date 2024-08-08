@@ -51,6 +51,7 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text(
             'Login',
             style: TextStyle(
