@@ -117,28 +117,31 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
         ],
         backgroundColor: Colors.orange,
       ),
-      body: FutureBuilder(
-        future: createOrGetExistingNote(context),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              _setupTextControllerListener();
-              return TextField(
-                controller: _textController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: "Start typing your note here",
-                ),
-              );
-            default:
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.green,
-                ),
-              );
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+        child: FutureBuilder(
+          future: createOrGetExistingNote(context),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.done:
+                _setupTextControllerListener();
+                return TextField(
+                  controller: _textController,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: const InputDecoration(
+                    hintText: "Start typing your note here",
+                  ),
+                );
+              default:
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.green,
+                  ),
+                );
+            }
+          },
+        ),
       ),
     );
   }
