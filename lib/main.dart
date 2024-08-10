@@ -12,12 +12,14 @@ import 'package:my_notes/views/notes/create_update_note_view.dart';
 import 'package:my_notes/views/notes/notes_view.dart';
 import 'package:my_notes/views/register_view.dart';
 import 'package:my_notes/views/verify_email_view.dart';
-// import 'package:path/path.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      // supportedLocales: AppLocalizations.supportedLocales,
+      // localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       title: 'My Notes',
       theme: ThemeData(

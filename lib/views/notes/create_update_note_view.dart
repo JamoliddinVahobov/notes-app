@@ -118,7 +118,8 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
         backgroundColor: Colors.orange,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+        padding:
+            const EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 10),
         child: FutureBuilder(
           future: createOrGetExistingNote(context),
           builder: (context, snapshot) {
