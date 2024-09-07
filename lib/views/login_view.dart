@@ -16,6 +16,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  bool see = true;
 
   @override
   void initState() {
@@ -28,7 +29,6 @@ class _LoginViewState extends State<LoginView> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-
     super.dispose();
   }
 
@@ -78,10 +78,20 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 TextField(
                   controller: _password,
-                  obscureText: true,
+                  obscureText: see,
                   enableSuggestions: false,
                   autocorrect: false,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          see = !see;
+                        });
+                      },
+                      icon: Icon(
+                        see ? Icons.visibility : Icons.visibility_off,
+                      ),
+                    ),
                     hintText: 'Enter your password here',
                   ),
                 ),
@@ -134,34 +144,3 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
-
-
-
-
-    // await AuthService.firebase().logIn(
-                //   email: email,
-                //   password: password,
-                // );
-                // final user = AuthService.firebase().currentUser;
-                // if (user?.isEmailVerified ?? false) {
-                //   // ignore: use_build_context_synchronously
-                //   Navigator.of(context).pushNamedAndRemoveUntil(
-                //     notesRoute,
-                //     (route) => false,
-                //   );
-                // } else {
-                //   // ignore: use_build_context_synchronously
-                //   Navigator.of(context).pushNamedAndRemoveUntil(
-                //     verifyEmailRoute,
-                //     (route) => false,
-                //   );
-                // }
-  
-
-
-
-
-
-
-
-// jamoliddinvahobov@gmail.com

@@ -20,7 +20,7 @@ void main() {
     MaterialApp(
       // supportedLocales: AppLocalizations.supportedLocales,
       // localizationsDelegates: AppLocalizations.localizationsDelegates,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       title: 'My Notes',
       theme: ThemeData(
         primarySwatch: Colors.blue,
