@@ -76,7 +76,7 @@ class _NotesViewState extends State<NotesView> {
           'Your notes',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 10),

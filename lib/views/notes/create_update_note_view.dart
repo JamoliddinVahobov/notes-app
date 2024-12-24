@@ -115,7 +115,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
             ),
           ),
         ],
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding:
