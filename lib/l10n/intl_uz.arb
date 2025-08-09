@@ -1,0 +1,11 @@
+{
+"notes_title": "{count, plural, =0{Sizda hech qanday eslatma yo'q} =1{1 eslatma} boshqa{{count}eslatma}}",
+  "@notes_title": {
+    "placeholders": {
+        "count": {
+            "type": "int",
+            "example": "2 ta eslatma"
+        }
+    }
+  }
+}
